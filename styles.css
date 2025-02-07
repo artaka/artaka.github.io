@@ -1,0 +1,102 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+body {
+    background-color: #ff4463;
+    font-family: "Montserrat", serif;
+}
+
+.hearts {
+    display: inline-block;
+    position: absolute;
+    color: #ffa7b7;
+    scale: 15;
+    z-index: -1;
+}
+
+#heart1 {
+    left: 80vw;
+    top: 75vh;
+    rotate: 15deg;
+}
+
+#heart2 {
+    left: 20vw;
+    top: 20vh;
+    rotate: -10deg;
+}
+
+#heart3 {
+    left: 30vw;
+    top: 60vh;
+    rotate: -10deg;
+}
+
+#heart4 {
+    left: 0vw;
+    top: 75vh;
+    rotate: 10deg;
+}
+
+#heart5 {
+    left: 83vw;
+    top: 15vh;
+    rotate: 15deg;
+}
+
+form {
+    width: 80%;
+    height: 300px;
+    background-color: #ffa7b7;
+    border: 3px white solid;
+    border-radius: 35px;
+    z-index: 2;
+    margin: 25% auto;
+}
+
+#formcontent {
+    margin-top: 80px;
+}
+
+form h1 {
+    color: white;
+    text-align: center;
+    font-weight: 500;
+}
+
+form button {
+    font-family: "Montserrat", serif;
+    font-weight: 600;
+    width: 30%;
+    height: 40px;
+    background-color: #ff4463;
+    color: white;
+    border: 2px solid white;
+    border-radius: 10px;
+    outline: 1px solid #ff4463;
+    animation: buttonanim 3s linear infinite;
+}
+
+@keyframes buttonanim {
+    0% {
+        outline-offset: 0px;
+        outline-color: #ff4463;
+    }
+
+    20% {
+        outline-offset: 10px;
+        outline-color: #ffa7b7;
+    }
+
+    100% {
+        outline-offset: 10px;
+        outline-color: #ffa7b7;
+    }
+}
+
+#btn1 {
+    margin-right: 10%;
+}
+
+#btnblock {
+    text-align: center;
+}
