@@ -100,3 +100,28 @@ form button {
 #btnblock {
     text-align: center;
 }
+
+#msgblock {
+    display: none;
+    width: 80%;
+    height: 300px;
+    background-color: #ffa7b7;
+    border: 3px white solid;
+    border-radius: 35px;
+    z-index: 2;
+    margin: 25% auto;
+}
+
+#msgtext {
+    color: white;
+    width: 80%;
+    margin: 20% auto;
+}
+
+#bigheart {
+    display: inline-block;
+    color: #ff4463;
+    scale: 15;
+    margin-top: 15%;
+    margin-left: 48%;
+}
