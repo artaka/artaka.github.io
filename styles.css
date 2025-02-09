@@ -121,7 +121,7 @@ form button {
 #bigheart {
     display: inline-block;
     color: #ff4463;
-    scale: 15;
+    scale: 12;
     margin-top: 15%;
     margin-left: 48%;
     animation: heartAnimation 1s linear infinite;
@@ -129,14 +129,14 @@ form button {
 
 @keyframes heartAnimation {
     0% {
-        scale: 15;
+        scale: 12;
     }
 
     25% {
-        scale: 16;
+        scale: 13;
     }
 
     50% {
-        scale: 15;
+        scale: 12;
     }
 }
