@@ -1,0 +1,345 @@
+@charset "UTF-8";
+@import url(./fonts.scss);
+body {
+  margin: 0;
+  width: 100%;
+  font-family: "GothicA1", sans-serif;
+}
+
+a {
+  color: white;
+  text-decoration: none;
+}
+
+header {
+  background: #007AFF;
+  width: 100%;
+  margin: 0;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  min-height: 100px;
+  justify-content: space-between;
+  align-items: center;
+}
+@media screen and (max-width: 640px) {
+  header svg {
+    order: -1;
+  }
+}
+header .menu.clicked {
+  rotate: 90deg;
+  transition: 400ms;
+}
+header .menu {
+  display: none;
+  margin-right: 35px;
+  transition: 400ms;
+}
+@media screen and (max-width: 640px) {
+  header .menu {
+    display: block;
+  }
+}
+header nav.menuClicked {
+  display: block;
+  width: 100%; /* Занимает всю ширину */
+  order: 1; /* Перемещаем навигацию вниз (после всех элементов) */
+  margin-right: 0;
+  padding: 15px 0;
+}
+header nav.menuClicked ul {
+  text-align: center;
+  padding: 0;
+}
+header nav.menuClicked ul li {
+  display: block !important; /* Элементы меню в столбец */
+  padding: 10px;
+}
+header nav.menuClicked ul #menuBttn1 {
+  width: 50%;
+  margin: 0 auto;
+}
+header nav {
+  color: white;
+  align-content: center;
+  margin-right: 32px;
+}
+@media screen and (max-width: 640px) {
+  header nav {
+    display: none;
+  }
+}
+header nav ul {
+  color: white;
+}
+header nav ul #menuBttn1 {
+  background-color: #F5F5F5;
+  border-radius: 8px;
+  color: #000;
+}
+header nav ul li {
+  list-style: none;
+  display: inline;
+  padding: 8px;
+}
+header svg {
+  margin-left: 32px;
+}
+
+main #main {
+  display: flex;
+  height: 600px;
+  background-image: url("/img/bg.png");
+  background-color: #000;
+  background-position: center;
+  background-size: cover;
+  color: #FFF;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+main #main h1 {
+  font-size: 64px;
+  font-weight: normal;
+  margin: 0;
+}
+main #main p {
+  font-size: 32px;
+  max-width: 500px;
+}
+main #statistics {
+  min-height: 500px;
+}
+main #statistics h2 {
+  font-size: 40px;
+  font-weight: normal;
+  width: 100%;
+  text-align: center;
+  line-height: 200px;
+  min-height: 200px;
+  margin: 0;
+}
+main #statistics #icons {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 100px;
+}
+main #statistics #icons div {
+  width: 290px;
+  text-align: center;
+}
+main #statistics #icons div p {
+  font-size: 24px;
+  text-align: center;
+}
+main #statistics #icons svg {
+  height: 120px;
+  width: 120px;
+}
+main #reviews {
+  min-height: 600px;
+}
+main #reviews h3 {
+  font-size: 40px;
+  font-weight: normal;
+  width: 100%;
+  text-align: center;
+  line-height: 90px;
+  min-height: 90px;
+  margin: 0;
+}
+main #reviews .frame-2 {
+  display: flex;
+  min-height: 500px;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+  gap: 100px;
+}
+main #reviews .frame-2 .component {
+  width: 260px;
+  height: 320px;
+  background-color: #F5F5F5;
+  box-shadow: 5px 6px 43px 4px rgba(0, 0, 0, 0.25);
+  text-align: center;
+  border-radius: 35px;
+}
+main #reviews .frame-2 .component p.humanName {
+  font-size: 24px;
+  margin: 0;
+}
+main #reviews .frame-2 .component p.rewText {
+  font-size: 20px;
+}
+main #reviews .frame-2 .component img {
+  margin-top: 35px;
+  border-radius: 35px;
+}
+main #contact {
+  margin-bottom: 55px;
+}
+main #contact h3 {
+  font-size: 40px;
+  font-weight: normal;
+  width: 100%;
+  text-align: center;
+  line-height: 90px;
+  min-height: 90px;
+  margin: 0;
+}
+main #contact form {
+  max-width: 740px;
+  width: 93%;
+  min-height: 425px;
+  margin: 0 auto;
+  text-align: center;
+  background-color: #F5F5F5;
+  border-radius: 35px;
+  box-shadow: 5px 6px 43px 4px rgba(0, 0, 0, 0.25);
+}
+main #contact form h4 {
+  font-size: 24px;
+  font-weight: normal;
+  text-align: center;
+  padding-top: 24px;
+}
+main #contact form label {
+  font-size: 22px;
+  display: block;
+  height: 28px;
+}
+main #contact form input {
+  font-size: 22px;
+  text-align: center;
+  box-sizing: border-box;
+  width: 93%;
+  max-width: 315px;
+  padding: 10px;
+  height: 48px;
+  background-color: #FFF;
+  border: none;
+  border-radius: 35px;
+  box-shadow: 4px 5px 43px -3px rgba(0, 0, 0, 0.25);
+  margin-bottom: 11px;
+  transition: 800ms;
+}
+main #contact form input:hover {
+  box-shadow: 4px 5px 43px 5px rgba(0, 0, 0, 0.25);
+  transition: 800ms;
+}
+main #contact form input:focus {
+  outline: 2px #007AFF solid !important;
+}
+main #contact form input:focus-visible {
+  outline: 2px #007AFF solid !important;
+}
+main #contact form button {
+  width: 93%;
+  max-width: 315px;
+  height: 48px;
+  background-color: #007AFF;
+  border: none;
+  border-radius: 35px;
+  color: #FFF;
+  box-shadow: 0px 2px 16.6px 5px rgba(0, 0, 0, 0.25);
+  transition: 500ms;
+}
+main #contact form button span {
+  font-size: 22px;
+}
+main #contact form button:hover {
+  scale: 0.99;
+  transition: 500ms;
+}
+main #contact form #ili {
+  font-size: 18px;
+  color: #000;
+  opacity: 40%;
+}
+main #contact form .socials {
+  margin: 0 auto;
+  width: 93%;
+  max-width: 263px;
+  min-height: 50px;
+}
+main #contact form .socials svg {
+  margin: 0 5px;
+  transition: 300ms;
+}
+main #contact form .socials svg:hover {
+  scale: 0.97;
+  transition: 300ms;
+}
+
+footer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  min-height: 130px;
+  background-color: #007AFF;
+}
+@media screen and (max-width: 440px) {
+  footer {
+    flex-direction: column;
+  }
+}
+footer #footerLogo {
+  width: 190px;
+  height: 115px;
+  margin-left: 25px;
+  text-align: center;
+}
+@media screen and (max-width: 440px) {
+  footer #footerLogo {
+    margin-left: 0;
+    margin-top: 15px;
+  }
+}
+footer #footerLogo svg {
+  width: 73px;
+  height: 76px;
+}
+footer #footerLogo p {
+  width: 190px;
+  color: #FFF;
+  font-size: 24px;
+  margin: 0;
+  margin-top: 10px;
+}
+footer ul {
+  margin-right: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  flex-wrap: wrap;
+  row-gap: 15px;
+}
+@media screen and (max-width: 440px) {
+  footer ul {
+    flex-direction: column;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+    margin-top: 25px;
+    margin-bottom: 21px;
+  }
+}
+footer ul li {
+  display: inline-block;
+  width: 170px;
+  list-style: none;
+  font-size: 24px;
+  text-align: center;
+}
+@media screen and (max-width: 440px) {
+  footer ul li {
+    width: 100%;
+  }
+}/*# sourceMappingURL=index.css.map */
