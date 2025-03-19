@@ -148,6 +148,36 @@ footer ul li {
   }
 }
 
+#preloader {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  background-color: #007AFF;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#preloader svg {
+  scale: 2;
+}
+
+#LogoTrain {
+  animation-name: preloaderAnim;
+  animation-duration: 1s;
+  animation-iteration-count: infinite;
+}
+
+@keyframes preloaderAnim {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(1px);
+  }
+  0% {
+    transform: translateY(0);
+  }
+}
 main h2 {
   text-align: center;
   font-size: 40px;
