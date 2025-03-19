@@ -161,6 +161,11 @@ footer ul li {
   scale: 2;
 }
 
+#preloader.done {
+  opacity: 0;
+  transition: 1000ms;
+}
+
 #LogoTrain {
   animation-name: preloaderAnim;
   animation-duration: 1s;
