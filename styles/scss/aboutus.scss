@@ -1,0 +1,65 @@
+@import "basicUI";
+
+
+main {
+    h2 {
+        text-align: center;
+        font-size: 40px;
+        font-weight: normal;
+        width: 100%;
+    }
+
+    p {
+        font-size: 24px;
+        flex-basis: 30%;
+        
+    }
+
+    img {
+        width: 370px;
+        margin-right: 50px;
+        @media screen and (max-width: 400px) {
+            width: 80%;
+        }
+    }
+
+    div {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+        @media screen and (max-width: 715px) {
+            flex-direction: column;
+            p {
+                text-align: center;
+                width: 80%;
+            }
+
+            img {
+                margin: 0 !important;
+            }
+        }
+    }
+
+    #lineTwo {
+        flex-direction: row-reverse;
+        @media screen and (max-width: 715px) {
+            flex-direction: column;
+            p {
+                text-align: center;
+                width: 80%;
+            }
+
+            img {
+                margin: 0 !important;
+            }
+        }
+
+        img {
+            margin: 0;
+            margin-left: 50px;
+        }
+    }
+}
+

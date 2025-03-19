@@ -1,5 +1,4 @@
 @charset "UTF-8";
-@import url(./fonts.scss);
 body {
   margin: 0;
   width: 100%;
@@ -22,11 +21,6 @@ header {
   justify-content: space-between;
   align-items: center;
 }
-@media screen and (max-width: 640px) {
-  header svg {
-    order: -1;
-  }
-}
 header .menu.clicked {
   rotate: 90deg;
   transition: 400ms;
@@ -43,8 +37,8 @@ header .menu {
 }
 header nav.menuClicked {
   display: block;
-  width: 100%; /* Занимает всю ширину */
-  order: 1; /* Перемещаем навигацию вниз (после всех элементов) */
+  width: 100%;
+  order: 1;
   margin-right: 0;
   padding: 15px 0;
 }
@@ -85,6 +79,73 @@ header nav ul li {
 }
 header svg {
   margin-left: 32px;
+}
+
+footer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  min-height: 130px;
+  background-color: #007AFF;
+}
+@media screen and (max-width: 440px) {
+  footer {
+    flex-direction: column;
+  }
+}
+footer #footerLogo {
+  width: 190px;
+  height: 115px;
+  margin-left: 25px;
+  text-align: center;
+}
+@media screen and (max-width: 440px) {
+  footer #footerLogo {
+    margin-left: 0;
+    margin-top: 15px;
+  }
+}
+footer #footerLogo svg {
+  width: 73px;
+  height: 76px;
+}
+footer #footerLogo p {
+  width: 190px;
+  color: #FFF;
+  font-size: 24px;
+  margin: 0;
+  margin-top: 10px;
+}
+footer ul {
+  margin-right: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  flex-wrap: wrap;
+  row-gap: 15px;
+}
+@media screen and (max-width: 440px) {
+  footer ul {
+    flex-direction: column;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+    margin-top: 25px;
+    margin-bottom: 21px;
+  }
+}
+footer ul li {
+  display: inline-block;
+  width: 170px;
+  list-style: none;
+  font-size: 24px;
+  text-align: center;
+}
+@media screen and (max-width: 440px) {
+  footer ul li {
+    width: 100%;
+  }
 }
 
 main #main {
@@ -275,71 +336,4 @@ main #contact form .socials svg {
 main #contact form .socials svg:hover {
   scale: 0.97;
   transition: 300ms;
-}
-
-footer {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  min-height: 130px;
-  background-color: #007AFF;
-}
-@media screen and (max-width: 440px) {
-  footer {
-    flex-direction: column;
-  }
-}
-footer #footerLogo {
-  width: 190px;
-  height: 115px;
-  margin-left: 25px;
-  text-align: center;
-}
-@media screen and (max-width: 440px) {
-  footer #footerLogo {
-    margin-left: 0;
-    margin-top: 15px;
-  }
-}
-footer #footerLogo svg {
-  width: 73px;
-  height: 76px;
-}
-footer #footerLogo p {
-  width: 190px;
-  color: #FFF;
-  font-size: 24px;
-  margin: 0;
-  margin-top: 10px;
-}
-footer ul {
-  margin-right: 25px;
-  display: flex;
-  align-items: center;
-  justify-content: end;
-  flex-wrap: wrap;
-  row-gap: 15px;
-}
-@media screen and (max-width: 440px) {
-  footer ul {
-    flex-direction: column;
-    justify-content: center;
-    margin: 0;
-    padding: 0;
-    margin-top: 25px;
-    margin-bottom: 21px;
-  }
-}
-footer ul li {
-  display: inline-block;
-  width: 170px;
-  list-style: none;
-  font-size: 24px;
-  text-align: center;
-}
-@media screen and (max-width: 440px) {
-  footer ul li {
-    width: 100%;
-  }
 }/*# sourceMappingURL=index.css.map */

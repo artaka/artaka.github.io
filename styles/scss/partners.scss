@@ -1,0 +1,48 @@
+@import "basicUI";
+
+main {
+    h2 {
+        font-size: 40px;
+        font-weight: normal;
+        text-align: center;
+        width: 100%;
+    }
+
+    #blox {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+
+        div {
+            width: 600px;
+            height: 500px;
+            background-color: #f5f5f5;
+            text-align: center;
+            margin-top: 15px;
+            margin-bottom: 25px;
+            border-radius: 35px;
+            box-shadow: 5px 6px 43px 4px rgba(0, 0, 0, 0.25);
+
+            @media screen and (max-width: 660px) {
+                width: 80%;
+                height: auto;
+
+                img {
+                    width: 80%;
+                    
+                }
+            }
+
+            img {
+                margin-top: 36px;
+            }
+
+            p {
+                font-size: 32px;
+                line-height: 77px;
+                margin: 0;
+            }
+        }
+    }
+}
