@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<tickets>
+
+    <ticket>
+        <id>1</id>
+        <route>Мозырь-Минск</route>
+        <departure>15:03</departure>
+        <comming>18:03</comming>
+        <days>пн, вт, ср, чт, пт</days>
+        <price>23.16 BYN</price>
+    </ticket>
+
+    <ticket>
+        <id>2</id>
+        <route>Минск-Мозырь</route>
+        <departure>12:03</departure>
+        <comming>17:03</comming>
+        <days>пн, вт, ср, чт, пт</days>
+        <price>23.16 BYN</price>
+    </ticket>
+
+    <ticket>
+        <id>3</id>
+        <route>Минск-Полоцк</route>
+        <departure>15:03</departure>
+        <comming>18:03</comming>
+        <days>пн, вт, ср, чт, пт</days>
+        <price>23.16 BYN</price>
+    </ticket>
+
+    <ticket>
+        <id>4</id>
+        <route>Полоцк-Минск</route>
+        <departure>15:03</departure>
+        <comming>18:03</comming>
+        <days>пн, вт, ср, чт, пт</days>
+        <price>23.16 BYN</price>
+    </ticket>
+
+</tickets>

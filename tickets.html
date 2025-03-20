@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>В разработке | Velocity Railways</title>
+    <title>Билеты | Velocity Railways</title>
     <link rel="stylesheet" href="/styles/css/tickets.css">
     <link rel="icon" type="image/svg+xml" href="/img/favicon.svg">
 </head>
@@ -78,8 +78,36 @@
     </header>
 
     <main>
-         <h2>В разработке...</h2>
+         <h2>Оформить билеты</h2>
 
+         <div id="blox">
+            
+         </div>
+
+         <div id="modal" class="modal">
+            <div class="modal-content">
+                <form action="/index.html" id="ticketForm">
+                <h2 id="formRoute"></h2>
+                <p id="formDeparture"></p>
+                <p id="formComming"></p>
+                <p id="formDays"></p>
+                <p>Оставьте свои данные</p>
+                
+                <div>
+                    <p id="pFio">ФИО</p>
+                    <input type="text" name="name" id="fio" required>
+                </div>
+
+                <div>
+                    <p id="pPhone">Номер телефона</p>
+                    <input type="text" name="phone" id="phone" required>
+                </div>
+
+                <p id="formPrice"></p>
+                <button type="button" class="close-button">Х</button>
+                <button type="submit">Оформить</button>
+                </form>
+            </div>
     </main>
 
     <footer>
@@ -114,7 +142,6 @@
 
     <script>
         let burgerBttn = document.getElementById("menu")
-        console.log(burgerBttn)
         let navbar = document.getElementById("headerMenu")
         let menuClickFlag = false
 
@@ -136,6 +163,89 @@
             setTimeout(() => {preloader.classList.add('done');}, 500);
             setTimeout(() => {console.log(preloader.style.display = 'none');}, 2000);
         });
+
+        
+
+        document.addEventListener('DOMContentLoaded', function() {
+            let selectedTicketData = null;
+
+            // Генерация билетов
+            fetch('tickets.xml')
+                .then(response => response.text())
+                .then(xmlString => {
+                const parser = new DOMParser();
+                const xmlDoc = parser.parseFromString(xmlString, "text/xml");
+                const tickets = xmlDoc.getElementsByTagName('ticket');
+                const container = document.getElementById('blox');
+
+                const createTicketElement = (ticket) => {
+                    const getValue = tag => ticket.getElementsByTagName(tag)[0]?.textContent || '';
+                    
+                    return `
+                    <div class="ticket" 
+                        data-route="${getValue('route')}"
+                        data-departure="${getValue('departure')}"
+                        data-comming="${getValue('comming')}"
+                        data-days="${getValue('days')}"
+                        data-price="${getValue('price')}">
+                        <p id="route">Маршрут: ${getValue('route')}</p>
+                        <p id="departure">Время отправление: ${getValue('departure')}</p>
+                        <p id="comming">Время прибытия: ${getValue('comming')}</p>
+                        <p id="days">Дни курсирования: ${getValue('days')}</p>
+                        <p id="price">${getValue('price')}</p>
+                        <button class="buy-button">Оформить</button>
+                    </div>
+                    `;
+                };
+
+                container.innerHTML = Array.from(tickets).map(ticket => 
+                    createTicketElement(ticket)).join('');
+
+                // Обработчик клика на кнопках
+                container.addEventListener('click', function(e) {
+                    if(e.target.classList.contains('buy-button')) {
+                    const ticketElement = e.target.closest('.ticket');
+                    selectedTicketData = {
+                        route: ticketElement.dataset.route,
+                        departure: ticketElement.dataset.departure,
+                        comming: ticketElement.dataset.comming,
+                        days: ticketElement.dataset.days,
+                        price: ticketElement.dataset.price
+                    };
+                    openModal();
+                    }
+                });
+                });
+
+            // Функции для работы с модальным окном
+            function openModal() {
+                const modal = document.getElementById('modal');
+                modal.style.display = 'flex';
+
+                // Заполняем форму данными
+                document.getElementById('formRoute').textContent = selectedTicketData.route;
+                document.getElementById('formDeparture').textContent = `Время отправления: ${selectedTicketData.departure}`;
+                document.getElementById('formComming').textContent = `Время прибытия: ${selectedTicketData.comming}`;
+                document.getElementById('formDays').textContent = `Дни курсирования: ${selectedTicketData.days}`;
+                document.getElementById('formPrice').textContent = `${selectedTicketData.price}`;
+            }
+
+            function closeModal() {
+                document.getElementById('modal').style.display = 'none';
+                selectedTicketData = null;
+            }
+
+            // Обработчики закрытия модалки
+            document.querySelector('.modal').addEventListener('click', function(e) {
+                if(e.target.classList.contains('modal') || e.target.classList.contains('close-button')) {
+                closeModal();
+                }
+            });
+
+            document.getElementById('ticketForm').addEventListener('submit', function(e) {
+                window.location.href='/index.html';
+            });
+    });
     </script>
 </body>
 </html>
