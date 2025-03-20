@@ -61,7 +61,7 @@ main {
             align-items: center;
             justify-content: center;
             width: 600px;
-            min-height: 600px;
+            max-height: 600px;
             background: #f5f5f5;
             border-radius: 15px;
             margin: auto;
@@ -118,7 +118,8 @@ main {
         }
 
         button {
-            width: 198px;
+            width: 60%;
+            max-width: 198px;
             height: 47px;
             font-size: 20px;
             background-color: #007AFF;
@@ -136,6 +137,7 @@ main {
 
         #formPrice {
             color: #007AFF;
+            margin-bottom: 10px;
         }
     }
 }

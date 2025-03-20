@@ -10,6 +10,10 @@ a {
   text-decoration: none;
 }
 
+button {
+  cursor: pointer;
+}
+
 header {
   background: #007AFF;
   width: 100%;
@@ -236,7 +240,7 @@ main .modal .modal-content {
   align-items: center;
   justify-content: center;
   width: 600px;
-  min-height: 600px;
+  max-height: 600px;
   background: #f5f5f5;
   border-radius: 15px;
   margin: auto;
@@ -288,7 +292,8 @@ main .modal input:focus-visible {
   outline: 2px #007AFF solid !important;
 }
 main .modal button {
-  width: 198px;
+  width: 60%;
+  max-width: 198px;
   height: 47px;
   font-size: 20px;
   background-color: #007AFF;
@@ -304,4 +309,5 @@ main .modal .close-button {
 }
 main .modal #formPrice {
   color: #007AFF;
+  margin-bottom: 10px;
 }/*# sourceMappingURL=tickets.css.map */

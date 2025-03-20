@@ -35,7 +35,138 @@
         <departure>15:03</departure>
         <comming>18:03</comming>
         <days>пн, вт, ср, чт, пт</days>
-        <price>23.16 BYN</price>
+        <price>21.16 BYN</price>
+    </ticket>
+
+    <ticket>
+        <id>5</id>
+        <route>Витебск-Минск</route>
+        <departure>10:14</departure>
+        <comming>14:23</comming>
+        <days>пн, чт, пт</days>
+        <price>32.47 BYN</price>
+    </ticket>
+
+    <ticket>
+        <id>6</id>
+        <route>Минск-Витебск</route>
+        <departure>17:00</departure>
+        <comming>22:19</comming>
+        <days>пн, чт, пт</days>
+        <price>32.12 BYN</price>
+    </ticket>
+
+    <ticket>
+        <id>7</id>
+        <route>Минск-Могилёв</route>
+        <departure>08:00</departure>
+        <comming>12:00</comming>
+        <days>пн, вт, ср, чт, пт</days>
+        <price>25.40 BYN</price>
+    </ticket>
+    
+    <ticket>
+        <id>8</id>
+        <route>Могилёв-Минск</route>
+        <departure>16:00</departure>
+        <comming>20:00</comming>
+        <days>пн, вт, ср, чт, пт</days>
+        <price>24.90 BYN</price>
+    </ticket>
+
+    <!-- Гомель -->
+    <ticket>
+        <id>9</id>
+        <route>Минск-Гомель</route>
+        <departure>07:30</departure>
+        <comming>11:45</comming>
+        <days>вт, ср, чт, пт</days>
+        <price>27.50 BYN</price>
+    </ticket>
+    
+    <ticket>
+        <id>10</id>
+        <route>Гомель-Минск</route>
+        <departure>15:15</departure>
+        <comming>19:30</comming>
+        <days>вт, ср, чт, пт</days>
+        <price>26.80 BYN</price>
+    </ticket>
+
+    <!-- Пинск -->
+    <ticket>
+        <id>11</id>
+        <route>Минск-Пинск</route>
+        <departure>09:00</departure>
+        <comming>13:20</comming>
+        <days>пн, ср, пт</days>
+        <price>24.90 BYN</price>
+    </ticket>
+    
+    <ticket>
+        <id>12</id>
+        <route>Пинск-Минск</route>
+        <departure>14:30</departure>
+        <comming>18:50</comming>
+        <days>пн, ср, пт</days>
+        <price>24.30 BYN</price>
+    </ticket>
+
+    <!-- Барановичи -->
+    <ticket>
+        <id>13</id>
+        <route>Минск-Барановичи</route>
+        <departure>10:00</departure>
+        <comming>12:30</comming>
+        <days>пн, вт, ср, чт, пт, сб</days>
+        <price>18.75 BYN</price>
+    </ticket>
+    
+    <ticket>
+        <id>14</id>
+        <route>Барановичи-Минск</route>
+        <departure>13:00</departure>
+        <comming>15:30</comming>
+        <days>пн, вт, ср, чт, пт, сб</days>
+        <price>18.75 BYN</price>
+    </ticket>
+
+    <!-- Брест -->
+    <ticket>
+        <id>15</id>
+        <route>Минск-Брест</route>
+        <departure>06:00</departure>
+        <comming>10:15</comming>
+        <days>пн, вт, ср, чт, пт, сб</days>
+        <price>29.45 BYN</price>
+    </ticket>
+    
+    <ticket>
+        <id>16</id>
+        <route>Брест-Минск</route>
+        <departure>17:00</departure>
+        <comming>21:15</comming>
+        <days>пн, вт, ср, чт, пт, сб</days>
+        <price>28.90 BYN</price>
+    </ticket>
+
+    <!-- Гродно -->
+    <ticket>
+        <id>17</id>
+        <route>Минск-Гродно</route>
+        <departure>11:20</departure>
+        <comming>15:40</comming>
+        <days>чт, пт, сб</days>
+        <price>26.50 BYN</price>
+    </ticket>
+    
+    <ticket>
+        <id>18</id>
+        <route>Гродно-Минск</route>
+        <departure>16:10</departure>
+        <comming>20:30</comming>
+        <days>чт, пт, сб</days>
+        <price>25.75 BYN</price>
     </ticket>
 
 </tickets>

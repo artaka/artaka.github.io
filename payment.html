@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Билеты | Velocity Railways</title>
-    <link rel="stylesheet" href="/styles/css/tickets.css">
+    <title>Оформление | Velocity Railways</title>
+    <link rel="stylesheet" href="/styles/css/payment.css">
     <link rel="icon" type="image/svg+xml" href="/img/favicon.svg">
 </head>
 <body>
@@ -78,36 +78,38 @@
     </header>
 
     <main>
-         <h2>Оформить билеты</h2>
-
-         <div id="blox">
-            
-         </div>
-
-         <div id="modal" class="modal">
-            <div class="modal-content">
-                <form action="/payment.html" id="ticketForm">
-                <h2 id="formRoute"></h2>
-                <p id="formDeparture"></p>
-                <p id="formComming"></p>
-                <p id="formDays"></p>
-                <p>Оставьте свои данные</p>
-                
-                <div>
-                    <p id="pFio">ФИО</p>
-                    <input type="text" name="name" id="fio" required>
-                </div>
-
-                <div>
-                    <p id="pPhone">Номер телефона</p>
-                    <input type="text" name="phone" id="phone" required>
-                </div>
-
-                <p id="formPrice"></p>
-                <button type="button" class="close-button">Х</button>
-                <button type="submit">Оформить</button>
-                </form>
+         <h2>Оформление</h2>
+        <form id="contactForm">
+            <h4>Оставьте свои данные</h4>
+            <div>
+                <label for="number">Номер карты</label>
+                <input type="number" name="number" id="numberInput" required>
             </div>
+            <div>
+                <label for="name">Фамилия и имя держателя</label>
+                <input type="text" name="name" id="nameInput" required>
+            </div>
+            <div>
+                <label for="date">Срок действия</label>
+                <input type="text" name="date" id="dateInput" required>
+            </div>
+            <div>
+                <label for="cvc">CVC</label>
+                <input type="number" name="cvc" id="cvcInput" required>
+            </div>
+            <button type="button" onclick="closeForm()">
+                <span>Оформить</span>
+            </button>
+        </form>
+
+        <div id="notification">
+            <form action="/index.html">
+                <h3>Оформление прошло успешно</h3>
+                <p>Благодарим за оформление!</p>
+                <p>В скором времени с вами свяжется наш оператор.</p>
+                <button type="submit" onclick="">Закрыть</button>
+            </form>
+        </div>
     </main>
 
     <footer>
@@ -159,93 +161,18 @@
             
         })
         window.addEventListener('load', function () {
-            let preloader = document.getElementById('preloader')
+            let preloader = document.getElementById('preloader');
             setTimeout(() => {preloader.classList.add('done');}, 500);
             setTimeout(() => {console.log(preloader.style.display = 'none');}, 2000);
         });
 
-        
+        function closeForm(){
+            let form = document.getElementById("contactForm")
+            let notification = document.getElementById("notification")
 
-        document.addEventListener('DOMContentLoaded', function() {
-            let selectedTicketData = null;
-
-            // Генерация билетов
-            fetch('tickets.xml')
-                .then(response => response.text())
-                .then(xmlString => {
-                const parser = new DOMParser();
-                const xmlDoc = parser.parseFromString(xmlString, "text/xml");
-                const tickets = xmlDoc.getElementsByTagName('ticket');
-                const container = document.getElementById('blox');
-
-                const createTicketElement = (ticket) => {
-                    const getValue = tag => ticket.getElementsByTagName(tag)[0]?.textContent || '';
-                    
-                    return `
-                    <div class="ticket" 
-                        data-route="${getValue('route')}"
-                        data-departure="${getValue('departure')}"
-                        data-comming="${getValue('comming')}"
-                        data-days="${getValue('days')}"
-                        data-price="${getValue('price')}">
-                        <p id="route">Маршрут: ${getValue('route')}</p>
-                        <p id="departure">Время отправление: ${getValue('departure')}</p>
-                        <p id="comming">Время прибытия: ${getValue('comming')}</p>
-                        <p id="days">Дни курсирования: ${getValue('days')}</p>
-                        <p id="price">${getValue('price')}</p>
-                        <button class="buy-button">Оформить</button>
-                    </div>
-                    `;
-                };
-
-                container.innerHTML = Array.from(tickets).map(ticket => 
-                    createTicketElement(ticket)).join('');
-
-                // Обработчик клика на кнопках
-                container.addEventListener('click', function(e) {
-                    if(e.target.classList.contains('buy-button')) {
-                    const ticketElement = e.target.closest('.ticket');
-                    selectedTicketData = {
-                        route: ticketElement.dataset.route,
-                        departure: ticketElement.dataset.departure,
-                        comming: ticketElement.dataset.comming,
-                        days: ticketElement.dataset.days,
-                        price: ticketElement.dataset.price
-                    };
-                    openModal();
-                    }
-                });
-                });
-
-            // Функции для работы с модальным окном
-            function openModal() {
-                const modal = document.getElementById('modal');
-                modal.style.display = 'flex';
-
-                // Заполняем форму данными
-                document.getElementById('formRoute').textContent = selectedTicketData.route;
-                document.getElementById('formDeparture').textContent = `Время отправления: ${selectedTicketData.departure}`;
-                document.getElementById('formComming').textContent = `Время прибытия: ${selectedTicketData.comming}`;
-                document.getElementById('formDays').textContent = `Дни курсирования: ${selectedTicketData.days}`;
-                document.getElementById('formPrice').textContent = `${selectedTicketData.price}`;
-            }
-
-            function closeModal() {
-                document.getElementById('modal').style.display = 'none';
-                selectedTicketData = null;
-            }
-
-            // Обработчики закрытия модалки
-            document.querySelector('.modal').addEventListener('click', function(e) {
-                if(e.target.classList.contains('modal') || e.target.classList.contains('close-button')) {
-                closeModal();
-                }
-            });
-
-            document.getElementById('ticketForm').addEventListener('submit', function(e) {
-                window.location.href='/index.html';
-            });
-    });
+            form.style.display = 'none';
+            notification.style.display = 'flex'
+        }
     </script>
 </body>
 </html>

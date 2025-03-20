@@ -193,54 +193,107 @@ main h2 {
   font-weight: normal;
   width: 100%;
 }
-main p {
+main #contactForm {
+  max-width: 740px;
+  width: 93%;
+  min-height: 425px;
+  margin: 0 auto;
+  margin-bottom: 50px;
+  text-align: center;
+  background-color: #F5F5F5;
+  border-radius: 35px;
+  box-shadow: 5px 6px 43px 4px rgba(0, 0, 0, 0.25);
+}
+main #contactForm h4 {
   font-size: 24px;
-  flex-basis: 30%;
+  font-weight: normal;
+  text-align: center;
+  padding-top: 24px;
 }
-main img {
-  width: 370px;
-  margin-right: 50px;
+main #contactForm label {
+  font-size: 22px;
+  display: block;
+  height: 28px;
 }
-@media screen and (max-width: 400px) {
-  main img {
-    width: 80%;
-  }
+main #contactForm input {
+  font-size: 22px;
+  text-align: center;
+  box-sizing: border-box;
+  width: 93%;
+  max-width: 315px;
+  padding: 10px;
+  height: 48px;
+  background-color: #FFF;
+  border: none;
+  border-radius: 35px;
+  box-shadow: 4px 5px 43px -3px rgba(0, 0, 0, 0.25);
+  margin-bottom: 11px;
+  transition: 800ms;
 }
-main div {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
+main #contactForm input:hover {
+  box-shadow: 4px 5px 43px 5px rgba(0, 0, 0, 0.25);
+  transition: 800ms;
+}
+main #contactForm input:focus {
+  outline: 2px #007AFF solid !important;
+}
+main #contactForm input:focus-visible {
+  outline: 2px #007AFF solid !important;
+}
+main #contactForm button {
+  width: 93%;
+  max-width: 315px;
+  height: 48px;
+  margin-bottom: 25px;
+  margin-top: 15px;
+  background-color: #007AFF;
+  border: none;
+  border-radius: 35px;
+  color: #FFF;
+  box-shadow: 0px 2px 16.6px 5px rgba(0, 0, 0, 0.25);
+  transition: 500ms;
+}
+main #contactForm button span {
+  font-size: 22px;
+}
+main #contactForm button:hover {
+  scale: 0.99;
+  transition: 500ms;
+}
+main #notification {
+  max-width: 740px;
+  width: 93%;
+  margin: 0 auto;
+  display: none;
   justify-content: center;
   align-items: center;
+  text-align: center;
+  flex-direction: column;
+  background-color: #F5F5F5;
+  border-radius: 35px;
+  box-shadow: 5px 6px 43px 4px rgba(0, 0, 0, 0.25);
 }
-@media screen and (max-width: 715px) {
-  main div {
-    flex-direction: column;
-  }
-  main div p {
-    text-align: center;
-    width: 80%;
-  }
-  main div img {
-    margin: 0 !important;
-  }
+main #notification h3 {
+  font-size: 32px;
+  font-weight: normal;
 }
-main #lineTwo {
-  flex-direction: row-reverse;
+main #notification p {
+  font-size: 24px;
 }
-@media screen and (max-width: 715px) {
-  main #lineTwo {
-    flex-direction: column;
-  }
-  main #lineTwo p {
-    text-align: center;
-    width: 80%;
-  }
-  main #lineTwo img {
-    margin: 0 !important;
-  }
+main #notification button {
+  width: 93%;
+  max-width: 315px;
+  height: 47px;
+  background-color: #007AFF;
+  border: none;
+  border-radius: 35px;
+  color: #FFF;
+  box-shadow: 0px 2px 16.6px 5px rgba(0, 0, 0, 0.25);
+  transition: 500ms;
+  margin-bottom: 25px;
+  font-size: 22px;
 }
-main #lineTwo img {
-  margin: 0;
-  margin-left: 50px;
-}/*# sourceMappingURL=aboutus.css.map */
+main #notification button:hover {
+  scale: 0.99;
+  transition: 500ms;
+}/*# sourceMappingURL=payment.css.map */
