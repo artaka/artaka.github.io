@@ -647,6 +647,9 @@
                 </a>
             </div>
         </form>
+        <div id="notification" class="hide i">
+            <p>Скоро с вами свяжется оператор.</p>
+        </div>
     </section>
     </main>
     <footer>
@@ -729,6 +732,14 @@
                 phoneInput.value = phone;
             });
 
+            function notify() {
+                let notifybox = document.getElementById("notification")
+                notifybox.classList.toggle('hide')
+                notifybox.classList.toggle('i')
+                setTimeout(() => {notifybox.classList.toggle('hide');}, 5000);
+                setTimeout(() => {notifybox.classList.toggle('i');}, 5100);
+            }
+
             // Обработчик отправки формы
             const contactForm = document.getElementById('contactForm');
             contactForm.addEventListener('submit', function(event) {
@@ -743,7 +754,7 @@
                 // Проверяем имя
                 if (!validateName(name)) {
                     nameInput.value = '';
-                    nameInput.placeholder = 'Имя должно содержать только буквы.';
+                    nameInput.placeholder = 'Только буквы';
                     isValid = false;
                 } else {
                     nameInput.placeholder = '';
@@ -752,7 +763,7 @@
                 // Проверяем номер телефона
                 if (!validatePhone(phone)) {
                     phoneInput.value = '';
-                    phoneInput.placeholder = 'Формат: +375XXXXXXXXX.';
+                    phoneInput.placeholder = 'Формат +375XXXXXXXXX';
                     isValid = false;
                 } else {
                     phoneInput.placeholder = '';
@@ -760,7 +771,7 @@
 
                 // Если все проверки пройдены, отправляем форму
                 if (isValid) {
-                    contactForm.submit();
+                    notify()
                 }
             });
         });

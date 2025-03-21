@@ -375,4 +375,25 @@ main #contact form .socials svg {
 main #contact form .socials svg:hover {
   scale: 0.97;
   transition: 300ms;
+}
+main #contact #notification {
+  position: fixed;
+  top: 5%;
+  left: 10%;
+  background-color: #00b900;
+  margin: auto;
+  color: #FFF;
+  width: 80%;
+  height: 65px;
+  border-radius: 15px;
+  text-align: center;
+  opacity: 1;
+  transition: 400ms;
+}
+main #contact #notification.hide {
+  opacity: 0;
+  transition: 400ms;
+}
+main #contact #notification.hide.i {
+  z-index: -1000;
 }/*# sourceMappingURL=index.css.map */

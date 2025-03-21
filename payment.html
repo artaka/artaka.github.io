@@ -220,7 +220,7 @@
                 // Проверяем номер карты
                 if (!validateCardNumber(number)) {
                     numberInput.value = '';
-                    numberInput.placeholder = 'Номер карты должен содержать 16 цифр.';
+                    numberInput.placeholder = 'Номер 16 цифр';
                     isValid = false;
                 } else {
                     numberInput.placeholder = '';
@@ -229,7 +229,7 @@
                 // Проверяем имя держателя
                 if (!validateName(name)) {
                     nameInput.value = '';
-                    nameInput.placeholder = 'Имя должно содержать только буквы.';
+                    nameInput.placeholder = 'Только буквы';
                     isValid = false;
                 } else {
                     nameInput.placeholder = '';
@@ -238,7 +238,7 @@
                 // Проверяем срок действия
                 if (!validateDate(date)) {
                     dateInput.value = '';
-                    dateInput.placeholder = 'Формат: MMYY.';
+                    dateInput.placeholder = 'Формат: MMYY';
                     isValid = false;
                 } else {
                     dateInput.placeholder = '';
@@ -247,7 +247,7 @@
                 // Проверяем CVC
                 if (!validateCVC(cvc)) {
                     cvcInput.value = '';
-                    cvcInput.placeholder = 'CVC должен содержать 3 цифры.';
+                    cvcInput.placeholder = 'CVC 3 цифры';
                     isValid = false;
                 } else {
                     cvcInput.placeholder = '';
