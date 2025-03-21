@@ -97,7 +97,7 @@
                 <label for="cvc">CVC</label>
                 <input type="number" name="cvc" id="cvcInput" required>
             </div>
-            <button type="button" onclick="closeForm()">
+            <button type="submit">
                 <span>Оформить</span>
             </button>
         </form>
@@ -173,6 +173,92 @@
             form.style.display = 'none';
             notification.style.display = 'flex'
         }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const numberInput = document.getElementById('numberInput');
+            const nameInput = document.getElementById('nameInput');
+            const dateInput = document.getElementById('dateInput');
+            const cvcInput = document.getElementById('cvcInput');
+
+            // Функция для валидации номера карты
+            function validateCardNumber(number) {
+                const regex = /^\d{16}$/; // Номер карты должен состоять из 16 цифр
+                return regex.test(number);
+            }
+
+            // Функция для валидации имени держателя
+            function validateName(name) {
+                const regex = /^[A-Za-zА-Яа-яЁё\s]{2,100}$/; // Только буквы и пробелы, от 2 до 100 символов
+                return regex.test(name);
+            }
+
+            // Функция для валидации срока действия
+            function validateDate(date) {
+                const regex = /^(0[1-9]|1[0-2])\d{2}$/; // Формат MMYY
+                return regex.test(date);
+            }
+
+            // Функция для валидации CVC
+            function validateCVC(cvc) {
+                const regex = /^\d{3}$/; // CVC должен состоять из 3 цифр
+                return regex.test(cvc);
+            }
+
+            // Обработчик отправки формы
+            const contactForm = document.getElementById('contactForm');
+            contactForm.addEventListener('submit', function(event) {
+                event.preventDefault(); // Предотвращаем отправку формы
+
+                // Получаем значения полей
+                const number = numberInput.value.trim();
+                const name = nameInput.value.trim();
+                const date = dateInput.value.trim();
+                const cvc = cvcInput.value.trim();
+
+                let isValid = true;
+
+                // Проверяем номер карты
+                if (!validateCardNumber(number)) {
+                    numberInput.value = '';
+                    numberInput.placeholder = 'Номер карты должен содержать 16 цифр.';
+                    isValid = false;
+                } else {
+                    numberInput.placeholder = '';
+                }
+
+                // Проверяем имя держателя
+                if (!validateName(name)) {
+                    nameInput.value = '';
+                    nameInput.placeholder = 'Имя должно содержать только буквы.';
+                    isValid = false;
+                } else {
+                    nameInput.placeholder = '';
+                }
+
+                // Проверяем срок действия
+                if (!validateDate(date)) {
+                    dateInput.value = '';
+                    dateInput.placeholder = 'Формат: MMYY.';
+                    isValid = false;
+                } else {
+                    dateInput.placeholder = '';
+                }
+
+                // Проверяем CVC
+                if (!validateCVC(cvc)) {
+                    cvcInput.value = '';
+                    cvcInput.placeholder = 'CVC должен содержать 3 цифры.';
+                    isValid = false;
+                } else {
+                    cvcInput.placeholder = '';
+                }
+
+                // Если все проверки пройдены, отправляем форму
+                if (isValid) {
+                    closeForm()
+                }
+            });
+        });
     </script>
 </body>
 </html>

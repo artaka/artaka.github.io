@@ -80,6 +80,13 @@
     <main>
          <h2>Оформить билеты</h2>
 
+        <div id="filter">
+            <label for="cityFilter">Направления:</label>
+            <select id="cityFilter">
+                <option value="all">Все</option>
+            </select>
+        </div>
+
          <div id="blox">
             
          </div>
@@ -91,16 +98,22 @@
                 <p id="formDeparture"></p>
                 <p id="formComming"></p>
                 <p id="formDays"></p>
+                <div>
+                <p id="pDate">Выберите дату поездки</p>
+                <select id="dateSelect" name="date" required>
+                    </select>
+                </div>
                 <p>Оставьте свои данные</p>
-                
                 <div>
                     <p id="pFio">ФИО</p>
-                    <input type="text" name="name" id="fio" required>
+                    <input type="text" name="name" id="fio" placeholder="Иванов Иван Иванович" required>
+                    <small class="error-message" id="fioError"></small>
                 </div>
 
                 <div>
                     <p id="pPhone">Номер телефона</p>
-                    <input type="text" name="phone" id="phone" required>
+                    <input type="text" name="phone" id="phone" value="+375" required>
+                    <small class="error-message" id="phoneError"></small>
                 </div>
 
                 <p id="formPrice"></p>
@@ -167,20 +180,39 @@
         
 
         document.addEventListener('DOMContentLoaded', function() {
-            let selectedTicketData = null;
+        let selectedTicketData = null;
 
-            // Генерация билетов
-            fetch('tickets.xml')
-                .then(response => response.text())
-                .then(xmlString => {
+        // Генерация билетов
+        fetch('tickets.xml')
+            .then(response => response.text())
+            .then(xmlString => {
                 const parser = new DOMParser();
                 const xmlDoc = parser.parseFromString(xmlString, "text/xml");
                 const tickets = xmlDoc.getElementsByTagName('ticket');
                 const container = document.getElementById('blox');
+                const cityFilter = document.getElementById('cityFilter');
 
+                // Создаем список
+                const cities = new Set();
+                Array.from(tickets).forEach(ticket => {
+                    const route = ticket.getElementsByTagName('route')[0].textContent;
+                    const [from, to] = route.split('-');
+                    cities.add(from.trim());
+                    cities.add(to.trim());
+                });
+
+                // Добавляем города в список
+                cities.forEach(city => {
+                    const option = document.createElement('option');
+                    option.value = city;
+                    option.textContent = city;
+                    cityFilter.appendChild(option);
+                });
+
+                // Функция создания блока билетов
                 const createTicketElement = (ticket) => {
                     const getValue = tag => ticket.getElementsByTagName(tag)[0]?.textContent || '';
-                    
+
                     return `
                     <div class="ticket" 
                         data-route="${getValue('route')}"
@@ -198,53 +230,165 @@
                     `;
                 };
 
-                container.innerHTML = Array.from(tickets).map(ticket => 
-                    createTicketElement(ticket)).join('');
+                // Добавление билетов
+                const displayTickets = (filterCity = 'all') => {
+                    container.innerHTML = '';
+                    Array.from(tickets).forEach(ticket => {
+                        const route = ticket.getElementsByTagName('route')[0].textContent;
+                        const [from, to] = route.split('-');
+                        if (filterCity === 'all' || from.trim() === filterCity || to.trim() === filterCity) {
+                            container.innerHTML += createTicketElement(ticket);
+                        }
+                    });
+                };
 
-                // Обработчик клика на кнопках
+                
+                displayTickets();
+
+                // Обработчик изменения фильтра
+                cityFilter.addEventListener('change', function() {
+                    displayTickets(this.value);
+                });
+
+                // Обработчик клика
                 container.addEventListener('click', function(e) {
-                    if(e.target.classList.contains('buy-button')) {
-                    const ticketElement = e.target.closest('.ticket');
-                    selectedTicketData = {
-                        route: ticketElement.dataset.route,
-                        departure: ticketElement.dataset.departure,
-                        comming: ticketElement.dataset.comming,
-                        days: ticketElement.dataset.days,
-                        price: ticketElement.dataset.price
-                    };
-                    openModal();
+                    if (e.target.classList.contains('buy-button')) {
+                        const ticketElement = e.target.closest('.ticket');
+                        selectedTicketData = {
+                            route: ticketElement.dataset.route,
+                            departure: ticketElement.dataset.departure,
+                            comming: ticketElement.dataset.comming,
+                            days: ticketElement.dataset.days,
+                            price: ticketElement.dataset.price
+                        };
+                        openModal();
                     }
                 });
-                });
+            });
 
-            // Функции для работы с модальным окном
-            function openModal() {
-                const modal = document.getElementById('modal');
-                modal.style.display = 'flex';
+        // Функции для работы с модальным окном
+        const generateAvailableDates = (days) => {
+            const dateSelect = document.getElementById('dateSelect');
+            dateSelect.innerHTML = '';
 
-                // Заполняем форму данными
-                document.getElementById('formRoute').textContent = selectedTicketData.route;
-                document.getElementById('formDeparture').textContent = `Время отправления: ${selectedTicketData.departure}`;
-                document.getElementById('formComming').textContent = `Время прибытия: ${selectedTicketData.comming}`;
-                document.getElementById('formDays').textContent = `Дни курсирования: ${selectedTicketData.days}`;
-                document.getElementById('formPrice').textContent = `${selectedTicketData.price}`;
-            }
+            const daysOfWeek = days.split(',').map(day => day.trim()); // Получаем дни курсирования
+            const dayMap = {
+                'пн': 1,
+                'вт': 2,
+                'ср': 3,
+                'чт': 4,
+                'пт': 5,
+                'сб': 6,
+                'вс': 0
+            };
 
-            function closeModal() {
-                document.getElementById('modal').style.display = 'none';
-                selectedTicketData = null;
-            }
+            const today = new Date();
+            for (let i = 0; i < 14; i++) {
+                const date = new Date(today);
+                date.setDate(today.getDate() + i);
 
-            // Обработчики закрытия модалки
-            document.querySelector('.modal').addEventListener('click', function(e) {
-                if(e.target.classList.contains('modal') || e.target.classList.contains('close-button')) {
-                closeModal();
+                const dayOfWeek = date.getDay(); // 0 (воскресенье) - 6 (суббота)
+                if (daysOfWeek.some(day => dayMap[day] === dayOfWeek)) {
+                    const option = document.createElement('option');
+                    option.value = date.toISOString().split('T')[0]; // Формат YYYY-MM-DD
+                    option.textContent = date.toLocaleDateString('ru-RU'); // Формат DD.MM.YYYY
+                    dateSelect.appendChild(option);
                 }
-            });
+            }
+        };
 
-            document.getElementById('ticketForm').addEventListener('submit', function(e) {
-                window.location.href='/index.html';
-            });
+        function openModal() {
+            const modal = document.getElementById('modal');
+            modal.style.display = 'flex';
+
+            // Заполняем форму данными
+            document.getElementById('formRoute').textContent = selectedTicketData.route;
+            document.getElementById('formDeparture').textContent = `Время отправления: ${selectedTicketData.departure}`;
+            document.getElementById('formComming').textContent = `Время прибытия: ${selectedTicketData.comming}`;
+            document.getElementById('formDays').textContent = `Дни курсирования: ${selectedTicketData.days}`;
+            document.getElementById('formPrice').textContent = `${selectedTicketData.price}`;
+            generateAvailableDates(selectedTicketData.days);
+        }
+
+        function closeModal() {
+            document.getElementById('modal').style.display = 'none';
+            selectedTicketData = null;
+        }
+
+        // Обработчики закрытия модалки
+        document.querySelector('.modal').addEventListener('click', function(e) {
+            if (e.target.classList.contains('modal') || e.target.classList.contains('close-button')) {
+                closeModal();
+            }
+        });
+    });
+
+    document.addEventListener('DOMContentLoaded', function() {
+        const fioInput = document.getElementById('fio');
+        const phoneInput = document.getElementById('phone');
+
+        // Функция для валидации ФИО
+        function validateFIO(fio) {
+            const regex = /^[A-Za-zА-Яа-яЁё\s]{2,100}$/;
+            return regex.test(fio);
+        }
+
+        // Функция для валидации номера телефона
+        function validatePhone(phone) {
+            const regex = /^\+375\d{9}$/;
+            return regex.test(phone);
+        }
+
+         phoneInput.addEventListener('input', function() {
+            let phone = phoneInput.value.trim();
+            // Форматируем номер телефона
+            if (phone.startsWith('375') && phone.length === 12) {
+                phone = '+375' + phone.slice(3);
+            }
+            phoneInput.value = phone;
+        });
+
+
+        // Обработчик отправки формы
+        const ticketForm = document.getElementById('ticketForm');
+        ticketForm.addEventListener('submit', function(event) {
+            event.preventDefault(); // Предотвращаем отправку формы
+
+            // Получаем значения полей
+            const fio = fioInput.value.trim();
+            const phone = phoneInput.value.trim();
+            const dateSelect = document.getElementById('dateSelect').value;
+            let sucsFio = false;
+            let sucsPhone = false;
+
+            // Проверяем ФИО
+            if (!validateFIO(fio)) {
+                fioInput.value = '';
+                fioInput.placeholder = 'В ФИО только буквы.';
+            } else {
+                fioInput.placeholder = '';
+                sucsFio = true;
+            }
+
+            // Проверяем номер телефона
+            if (!validatePhone(phone)) {
+                phoneInput.value = '';
+                phoneInput.placeholder = 'Только +375XXXXXXXXX.';
+            } else {
+                phoneInput.placeholder = '';
+                sucsPhone = true;
+            }
+
+            // Проверяем дату
+            if (!dateSelect) {
+                return;
+            }
+
+            // Если все проверки пройдены, отправляем форму
+            if(sucsFio && sucsPhone){
+                ticketForm.submit();
+            }
+        });
     });
     </script>
 </body>

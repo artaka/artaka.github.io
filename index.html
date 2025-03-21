@@ -522,13 +522,13 @@
                 <label for="phone">Номер телефона</label>
                 <input type="text" name="phone" id="phoneInput">
             </div>
-            <button>
+            <button type="submit">
                 <span>Оставить заявку</span>
             </button>
 
             <p id="ili">или</p>
             <div class="socials">
-                <svg
+                <a href="https://t.me/s/belrw_official"><svg
                 class="telegram-black-logo-icon-147073-1"
                 width="51"
                 height="50"
@@ -555,7 +555,9 @@
                     </clipPath>
                 </defs>
                 </svg>
-                <svg
+                </a>
+
+                <a href="https://instagram.com"><svg
                 class="instagram-black-logo-icon-147122-1"
                 width="51"
                 height="50"
@@ -594,7 +596,9 @@
                     </clipPath>
                 </defs>
                 </svg>
-                <svg
+                </a>
+
+                <a href="https://x.com"><svg
                     class="group"
                     width="51"
                     height="50"
@@ -613,7 +617,9 @@
                     fill="white"
                     />
                 </svg>
-                <svg
+                </a>
+
+                <a href="https://www.tiktok.com/@belrw_official"><svg
                 class="tiktok-logo-icon-186928-1"
                 width="51"
                 height="50"
@@ -638,6 +644,7 @@
                     </clipPath>
                 </defs>
                 </svg>
+                </a>
             </div>
         </form>
     </section>
@@ -695,6 +702,67 @@
             let preloader = document.getElementById('preloader')
             setTimeout(() => {preloader.classList.add('done');}, 500);
             setTimeout(() => {console.log(preloader.style.display = 'none');}, 2000);
+        });
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const nameInput = document.getElementById('nameInput');
+            const phoneInput = document.getElementById('phoneInput');
+
+            // Функция для валидации имени
+            function validateName(name) {
+                const regex = /^[A-Za-zА-Яа-яЁё\s]{2,100}$/; // Только буквы и пробелы, от 2 до 100 символов
+                return regex.test(name);
+            }
+
+            // Функция для валидации номера телефона
+            function validatePhone(phone) {
+                const regex = /^\+375\d{9}$/; // Формат +375XXXXXXXXX
+                return regex.test(phone);
+            }
+
+            phoneInput.addEventListener('input', function() {
+                let phone = phoneInput.value.trim();
+                // Форматируем номер телефона
+                if (phone.startsWith('375') && phone.length === 12) {
+                    phone = '+375' + phone.slice(3);
+                }
+                phoneInput.value = phone;
+            });
+
+            // Обработчик отправки формы
+            const contactForm = document.getElementById('contactForm');
+            contactForm.addEventListener('submit', function(event) {
+                event.preventDefault(); // Предотвращаем отправку формы
+
+                // Получаем значения полей
+                const name = nameInput.value.trim();
+                const phone = phoneInput.value.trim();
+
+                let isValid = true;
+
+                // Проверяем имя
+                if (!validateName(name)) {
+                    nameInput.value = '';
+                    nameInput.placeholder = 'Имя должно содержать только буквы.';
+                    isValid = false;
+                } else {
+                    nameInput.placeholder = '';
+                }
+
+                // Проверяем номер телефона
+                if (!validatePhone(phone)) {
+                    phoneInput.value = '';
+                    phoneInput.placeholder = 'Формат: +375XXXXXXXXX.';
+                    isValid = false;
+                } else {
+                    phoneInput.placeholder = '';
+                }
+
+                // Если все проверки пройдены, отправляем форму
+                if (isValid) {
+                    contactForm.submit();
+                }
+            });
         });
     </script>
 </body>

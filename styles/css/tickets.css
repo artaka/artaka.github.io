@@ -193,6 +193,28 @@ main h2 {
   font-weight: normal;
   width: 100%;
 }
+main #filter {
+  width: 90%;
+  font-size: 22px;
+  text-align: center;
+  margin: 0 auto;
+  margin-bottom: 25px;
+}
+main #filter select {
+  width: 40%;
+  max-width: 150px;
+  height: 45px;
+  border: #007AFF 1px solid;
+  border-radius: 35px;
+  text-align: center;
+  font-size: 20px;
+}
+main #filter select:focus {
+  border-color: #007AFF;
+}
+main #filter select:focus-visible {
+  outline: #007AFF;
+}
 main #blox {
   display: flex;
   flex-direction: row;
@@ -253,12 +275,12 @@ main .modal .modal-content {
   }
 }
 main .modal h2 {
-  font-size: 32px;
+  font-size: 30px;
   padding-top: 25px;
 }
 main .modal p {
-  margin-bottom: 30px;
-  font-size: 20px;
+  margin-bottom: 15px;
+  font-size: 18px;
 }
 main .modal #pFio {
   margin-bottom: 0px;
@@ -266,14 +288,14 @@ main .modal #pFio {
 main .modal #pPhone {
   margin-bottom: 0px;
 }
-main .modal input {
-  font-size: 22px;
+main .modal input, main .modal select {
+  font-size: 16px;
   text-align: center;
   box-sizing: border-box;
   width: 93%;
   max-width: 315px;
   padding: 10px;
-  height: 48px;
+  height: 36px;
   background-color: #FFF;
   border: none;
   border-radius: 35px;
@@ -291,11 +313,17 @@ main .modal input:focus {
 main .modal input:focus-visible {
   outline: 2px #007AFF solid !important;
 }
+main .modal select:focus {
+  outline: 2px #007AFF solid !important;
+}
+main .modal select:focus-visible {
+  outline: 2px #007AFF solid !important;
+}
 main .modal button {
   width: 60%;
   max-width: 198px;
   height: 47px;
-  font-size: 20px;
+  font-size: 18px;
   background-color: #007AFF;
   color: #fff;
   border: none;
@@ -309,5 +337,7 @@ main .modal .close-button {
 }
 main .modal #formPrice {
   color: #007AFF;
+  font-size: 22px;
   margin-bottom: 10px;
+  margin-top: 10px;
 }/*# sourceMappingURL=tickets.css.map */
